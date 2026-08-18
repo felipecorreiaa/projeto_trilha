@@ -3,7 +3,7 @@ O TRILHA é um sistema desenvolvido para auxiliar na gestão de organizações e
 
 O projeto possui funcionalidades para:
 
-🔐 Cadastro e login de usuários
+🔐 Cadastro e login de usuários\n
 👥 Gerenciamento de membros
 🏛️ Gerenciamento de organizações
 📢 Mural de avisos
