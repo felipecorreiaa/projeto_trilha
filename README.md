@@ -1,7 +1,7 @@
 # projeto_trilha
 O TRILHA é um sistema desenvolvido para auxiliar na gestão de organizações estudantis, como ligas acadêmicas, atléticas e grupos de estudos.
 
-O projeto possui funcionalidades para:
+O projeto deve possuir funcionalidades para:
 
 🔐 Cadastro e login de usuários
 
@@ -20,7 +20,7 @@ O projeto possui funcionalidades para:
 🔑 Diferentes níveis de acesso para gestores e membros
 
 
-🛠️ Tecnologias
+# 🛠️ Tecnologias
 
 Python
 
@@ -29,6 +29,6 @@ CustomTkinter
 SQLite
 
 
-🎓 Projeto acadêmico
+# 🎓 Projeto acadêmico
 
 Projeto em desenvolvimento durante o 1º período do curso de Sistemas de Informação da Universidade Federal Rural de Pernambuco (UFRPE).
