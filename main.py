@@ -46,6 +46,7 @@ def tela_login():
     if sucesso:
         sleep(0.5)
         print(f"Bem vindo! Tipo de conta: {usuario['tipo']}")
+        sleep(0.5)
 
 
 def menu_principal():
