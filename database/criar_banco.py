@@ -21,8 +21,8 @@ def criar_tabelas():
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS organizacoes(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        gestor_id INTEGER REFERENCES users(id))
+        nome TEXT NOT NULL,
+        gestor_id INTEGER REFERENCES usuarios(id))
     ''')
 
 #criar tabela de atividades
