@@ -46,7 +46,7 @@ python main.py
 | Cadastro de Conta |	Cadastro de usuário (gestor ou membro) com e-mail, senha e tipo de cadastro. |
 | Organizações (Membro) |	O membro visualiza as organizações cadastradas e acessa a área de uma organização específica para ver suas informações. |
 | Organizações (Gestor) |	O gestor visualiza, cadastra, edita e exclui organizações, com validação de nome inválido e de nome já existente. |
-| Adicionar Atividade |	O gestor adiciona uma atividade à agenda da organização (dia, horário e breve descrição/link de inscrição), exibida para todos os membros na aba de calendário. Valida dia, horário e descrição. |
+| Busca de organização por palavra-chave |	O usuário visualiza as organizações cadastradas e pode fazer uma busca usando apenas palavras para encontrar a organização desejada. |
 
 
 ## 🎓 Projeto acadêmico
