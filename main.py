@@ -65,12 +65,15 @@ def tela_cadastro_organizacao(usuario, gestor_id):
     sucesso, mensagem = organizacoes_controller.cadastrar(nome, gestor_id)
     print(mensagem)
 
-def buscar_organizacao_por_nome():
+def buscar_organizacao_por_palavra_chave():
     print("\n\n\033[44m ----- BUSCA POR NOME ----- \033[0m")
-    nome = input("Digite o nome da organização: ")
-    organizacao = organizacoes_controller.buscar_por_nome(nome)
-    if organizacao:
-        print(f"Organização encontrada: {organizacao['nome']}")
+    palavra_chave = input("Digite o nome da organização: ")
+    organizacoes = organizacoes_controller.buscar_por_palavra_chave(palavra_chave)
+    if organizacoes:
+        sleep(0.5)
+        print("\nOrganizações encontradas:")
+        for organizacao in organizacoes:
+            print(f" - {organizacao['nome']}")
     else:
         print("Organização não encontrada.")
 
@@ -81,22 +84,44 @@ def tela_minhas_organizacoes(usuario):
 
     if not organizacoes:
         print("Você não possui organizações cadastradas.")
+        sleep(0.5)
         deseja_cadastrar = input("Deseja cadastrar uma organização? (s/n): ")
         if deseja_cadastrar.lower() == "s":
+            sleep(0.5)
             tela_cadastro_organizacao(usuario, gestor_id=usuario['id'])
         return
     
     for i, organizacao in enumerate(organizacoes, start=1):
         print(f"{i}- {organizacao['nome']}")
-    editar = input("Deseja editar o nome da organização? (s/n): ")
+    editar = input("\nDeseja editar o nome da organização? (s/n): ")
     if editar.lower() == "s":
+        sleep(0.5)
         org_numero = int(input("Digite o número da organização que deseja editar: ")) - 1
         if 0 <= org_numero < len(organizacoes):
+            sleep(0.5)
             novo_nome = input("Digite o novo nome da organização: ")
             sucesso, mensagem = organizacoes_controller.atualizar(organizacoes[org_numero]['id'], novo_nome)
             print(mensagem)
         else:
             print("Organização inválida.")
+
+    elif editar.lower() == "n":
+        sleep(0.5)
+        deseja_cadastrar = input("Deseja cadastrar outra organização? (s/n): ")
+        if deseja_cadastrar.lower() == "s":
+            sleep(0.5)
+            tela_cadastro_organizacao(usuario, gestor_id=usuario['id'])
+        elif deseja_cadastrar.lower() == "n":
+            sleep(0.5)
+            excluir = input("Deseja excluir alguma organização? (s/n): ")
+            if excluir.lower() == "s":
+                org_numero = int(input("Digite o número da organização que deseja excluir: ")) - 1
+                if 0 <= org_numero < len(organizacoes):
+                    sucesso, mensagem = organizacoes_controller.excluir(organizacoes[org_numero]['id'])
+                    print(mensagem)
+                else:
+                    print("Organização inválida.")
+            return
 
     input("Pressione Enter para voltar ao menu...")
     sleep(0.5)
@@ -111,9 +136,9 @@ def tela_organizacoes():
     
     for i, organizacao in enumerate(organizacoes, start=1):
         print(f"{i}- {organizacao['nome']}")
-    buscar = input("\nDeseja buscar uma organização por nome? (s/n): ")
+    buscar = input("\nDeseja buscar uma organização? (s/n): ")
     if buscar.lower() == "s":
-        buscar_organizacao_por_nome()
+        buscar_organizacao_por_palavra_chave()
 
     input("Pressione Enter para voltar ao menu...")
     sleep(0.5)
@@ -155,7 +180,7 @@ def excluir_conta(usuario):
 
 def menu_principal():
     while True:
-        print("\n\n\033[44m ===== TRILHA ===== \033[0m")
+        print("\n\n\033[46m ===== TRILHA ===== \033[0m")
         print("1 - Login")
         print("2 - Cadastro")
         print("3 - Sair")
