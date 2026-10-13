@@ -30,7 +30,7 @@ SQLite
 ## 🚀 Como executar
 
 Clone o repositório:
-git clone https://github.com/felipecorreiaa/projeto_trilha.git
+git clone https://github.com/felipecorreiaa/projeto_trilha.git  
 cd projeto_trilha
 
 Instale as dependências:
