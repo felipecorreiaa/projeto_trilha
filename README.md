@@ -44,7 +44,7 @@ python main.py
 |---|---|
 | Menu Inicial | Menu principal do sistema. Se o usuário digitar uma opção inexistente, é notificado e solicitado a digitar novamente. |
 | Cadastro de Conta |	Cadastro de usuário (gestor ou membro) com e-mail, senha e tipo de cadastro. |
-| Organizações (Membro) |	O membro visualiza as organizações cadastradas e acessa a área de uma organização específica para ver suas informações. |
+| Organizações (Membro) |	O membro visualiza as organizações cadastradas. |
 | Organizações (Gestor) |	O gestor visualiza, cadastra, edita e exclui organizações, com validação de nome inválido e de nome já existente. |
 | Busca de organização por palavra-chave |	O usuário visualiza as organizações cadastradas e pode fazer uma busca usando apenas palavras para encontrar a organização desejada. |
 
