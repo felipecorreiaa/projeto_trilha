@@ -11,15 +11,6 @@ class OrganizacoesRepository:
         conn.commit()
         conn.close()
 
-    def buscar_por_nome(self, nome):
-        conn = sqlite3.connect('database/trilha.db')
-        conn.row_factory = sqlite3.Row
-        organizacao = conn.execute(
-            'SELECT * FROM organizacoes WHERE nome = ?', (nome,)
-        ).fetchone()
-        conn.close()
-        return organizacao
-
     def buscar_por_id(self, organizacao_id):
         conn = sqlite3.connect('database/trilha.db')
         conn.row_factory = sqlite3.Row
@@ -64,3 +55,12 @@ class OrganizacoesRepository:
         )
         conn.commit()
         conn.close()
+
+    def buscar_por_palavra_chave(self, palavra_chave):
+        conn = sqlite3.connect('database/trilha.db')
+        conn.row_factory = sqlite3.Row
+        organizacoes = conn.execute(
+            'SELECT * FROM organizacoes WHERE nome LIKE ?', (f'%{palavra_chave}%',)
+        ).fetchall()
+        conn.close()
+        return organizacoes
