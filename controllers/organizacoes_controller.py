@@ -32,6 +32,5 @@ class OrganizacoesController:
         self.repository.excluir(organizacao_id)
         return True, "Organização excluída com sucesso."
 
-    def buscar_por_nome(self, nome):
-        return self.repository.buscar_por_nome(nome)
-    
+    def buscar_por_palavra_chave(self, palavra_chave):
+        return self.repository.buscar_por_palavra_chave(palavra_chave)
