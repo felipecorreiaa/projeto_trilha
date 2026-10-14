@@ -64,3 +64,12 @@ class OrganizacoesRepository:
         ).fetchall()
         conn.close()
         return organizacoes
+
+    def buscar_por_nome(self, nome):
+        conn = sqlite3.connect('database/trilha.db')
+        conn.row_factory = sqlite3.Row
+        organizacao = conn.execute(
+            'SELECT * FROM organizacoes WHERE nome = ?', (nome,)
+        ).fetchone()
+        conn.close()
+        return organizacao
