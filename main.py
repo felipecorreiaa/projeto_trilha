@@ -51,7 +51,6 @@ def tela_login(menu_principal, menu_membro, menu_gestor):
             menu_membro(usuario)
         else:
             menu_gestor(usuario)
-        return
 
 def tela_cadastro_organizacao(usuario, gestor_id):
     print("\n\n\033[44m ----- CADASTRO DE ORGANIZAÇÃO ----- \033[0m")
