@@ -34,3 +34,9 @@ class OrganizacoesController:
 
     def buscar_por_palavra_chave(self, palavra_chave):
         return self.repository.buscar_por_palavra_chave(palavra_chave)
+
+    def buscar_por_id(self, organizacao_id):
+        return self.repository.buscar_por_id(organizacao_id)
+
+    def buscar_por_nome(self, nome):
+        return self.repository.buscar_por_nome(nome)
