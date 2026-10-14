@@ -29,11 +29,11 @@ class UsuarioRepository:
         conn.close()
         return usuario
 
-    def atualizar(self, usuario_id, nome, email, senha, tipo):
+    def atualizar(self, usuario_id, nome, email, senha):
         conn = sqlite3.connect('database/trilha.db')
         conn.execute(
-            'UPDATE usuarios SET nome = ?, email = ?, senha = ?, tipo = ? WHERE id = ?',
-            (nome, email, senha, tipo, usuario_id)
+            'UPDATE usuarios SET nome = ?, email = ?, senha = ? WHERE id = ?',
+            (nome, email, senha, usuario_id)
         )
         conn.commit()
         conn.close()

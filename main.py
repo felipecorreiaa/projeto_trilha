@@ -157,20 +157,20 @@ def minha_conta(usuario):
     print(f"Email: {usuario['email']}")
     print(f"Tipo: {usuario['tipo']}")
 
-    input("Pressione Enter para voltar ao menu...")
-    sleep(0.5)
-
-def alterar_senha(usuario):
-    print("\n\n\033[44m ----- ALTERAR SENHA ----- \033[0m")
     while True:
-        alterar = input("Deseja alterar a senha? (s/n): ")
+        sleep(0.5)
+        alterar = input("\nDeseja alterar os dados da conta? (s/n): ")
         if alterar.lower() == "s":
+            novo_nome = input("Digite o novo nome: ")
+            novo_email = input("Digite o novo email: ")
             nova_senha = input("Digite a nova senha: ")
-            sucesso, mensagem = usuario_controller.alterar_senha(usuario['id'], nova_senha)
+            sucesso, mensagem = usuario_controller.editar_usuario(usuario['id'], novo_nome, novo_email, nova_senha)
             print(mensagem)
-            break
+            if sucesso:
+                usuario = usuario_controller.buscar_por_id(usuario['id'])
+            return usuario
         elif alterar.lower() == "n":
-            break
+            return usuario
         else:
             print("Opção inválida. Tente novamente.")
 
@@ -180,7 +180,7 @@ def excluir_conta(usuario):
         if excluir.lower() == "s":
             sucesso, mensagem = usuario_controller.excluir_conta(usuario['id'])
             print(mensagem)
-            break
+            return sucesso
         elif excluir.lower() == "n":
             return False
         else:
@@ -215,9 +215,8 @@ def menu_membro(usuario):
         print("\n\n\033[44m ===== MENU MEMBRO ===== \033[0m")
         print("1 - Ver organizações")
         print("2 - Minha conta")
-        print("3 - Alterar senha")
-        print("4 - Excluir conta")
-        print("5 - Sair")
+        print("3 - Excluir conta")
+        print("4 - Sair")
         opcao = input("Escolha uma opção: ")
 
         if opcao == "1":
@@ -226,18 +225,14 @@ def menu_membro(usuario):
 
         elif opcao == "2":
             sleep(0.5)
-            minha_conta(usuario)
+            usuario =minha_conta(usuario)
 
         elif opcao == "3":
-            sleep(0.5)
-            alterar_senha(usuario)
-
-        elif opcao == "4":
             sleep(0.5)
             if excluir_conta(usuario):
                 break
 
-        elif opcao == "5":
+        elif opcao == "4":
             print("Saindo...")
             sleep(0.5)
             break
@@ -252,9 +247,8 @@ def menu_gestor(usuario):
         print("1 - Ver organizações")
         print("2 - Minhas organizações")
         print("3 - Minha conta")
-        print("4 - Alterar senha")
-        print("5 - Excluir conta")
-        print("6 - Sair")
+        print("4 - Excluir conta")
+        print("5 - Sair")
         opcao = input("Escolha uma opção: ")
 
         if opcao == "1":
@@ -269,21 +263,16 @@ def menu_gestor(usuario):
 
         elif opcao == "3":
             sleep(0.5)
-            minha_conta(usuario)
+            usuario = minha_conta(usuario)
             sleep(0.5)
 
         elif opcao == "4":
-            sleep(0.5)
-            alterar_senha(usuario)
-            sleep(0.5)
-
-        elif opcao == "5":
             sleep(0.5)
             if excluir_conta(usuario):
                 break
             sleep(0.5)
 
-        elif opcao == "6":
+        elif opcao == "5":
             print("Saindo...")
             sleep(0.5)
             break
