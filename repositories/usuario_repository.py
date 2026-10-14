@@ -38,15 +38,6 @@ class UsuarioRepository:
         conn.commit()
         conn.close()
 
-    def atualizar_senha(self, usuario_id, nova_senha):
-        conn = sqlite3.connect('database/trilha.db')
-        conn.execute(
-            'UPDATE usuarios SET senha = ? WHERE id = ?',
-            (nova_senha, usuario_id)
-        )
-        conn.commit()
-        conn.close()
-
     def deletar(self, usuario_id):
         conn = sqlite3.connect('database/trilha.db')
         conn.execute(
