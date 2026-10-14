@@ -53,7 +53,7 @@ def tela_login(menu_principal, menu_membro, menu_gestor):
             menu_gestor(usuario)
         return
 
-def tela_cadastro_organizacao(usuario, gestor_id):
+def tela_cadastro_organizacao(usuario):
     print("\n\n\033[44m ----- CADASTRO DE ORGANIZAÇÃO ----- \033[0m")
     print("Digite 0 para voltar ao menu")
     nome = input("Nome da organização: ")
@@ -62,7 +62,7 @@ def tela_cadastro_organizacao(usuario, gestor_id):
         sleep(0.5)
         return
 
-    sucesso, mensagem = organizacoes_controller.cadastrar(nome, gestor_id)
+    sucesso, mensagem = organizacoes_controller.cadastrar(nome, usuario['id'])
     print(mensagem)
 
 def buscar_organizacao_por_palavra_chave():
@@ -88,7 +88,7 @@ def tela_minhas_organizacoes(usuario):
         deseja_cadastrar = input("Deseja cadastrar uma organização? (s/n): ")
         if deseja_cadastrar.lower() == "s":
             sleep(0.5)
-            tela_cadastro_organizacao(usuario, gestor_id=usuario['id'])
+            tela_cadastro_organizacao(usuario)
         return
     
     for i, organizacao in enumerate(organizacoes, start=1):
@@ -114,7 +114,7 @@ def tela_minhas_organizacoes(usuario):
         deseja_cadastrar = input("Deseja cadastrar outra organização? (s/n): ")
         if deseja_cadastrar.lower() == "s":
             sleep(0.5)
-            tela_cadastro_organizacao(usuario, gestor_id=usuario['id'])
+            tela_cadastro_organizacao(usuario)
         elif deseja_cadastrar.lower() == "n":
             sleep(0.5)
             excluir = input("Deseja excluir alguma organização? (s/n): ")

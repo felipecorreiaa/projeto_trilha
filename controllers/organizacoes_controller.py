@@ -5,9 +5,11 @@ class OrganizacoesController:
         self.repository = OrganizacoesRepository()
 
     def cadastrar(self, nome, gestor_id):
+        nome = nome.strip()
+        if not nome:
+            return False, "Nome inválido."
         if self.repository.buscar_por_nome(nome):
             return False, "Organização já cadastrada."
-        nome = nome.strip()
         if not nome:
             return False, "O nome da organização não pode ser vazio."
         self.repository.inserir(nome, gestor_id)
