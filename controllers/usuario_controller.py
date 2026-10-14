@@ -21,7 +21,7 @@ class UsuarioController:
         usuario = self.repository.buscar_por_email(email)
         if not usuario:
             return False, "Usuário não encontrado.", None
-        if not senha:
+        if senha != usuario['senha']:
             return False, "Senha incorreta.", None
         return True, "Login realizado.", usuario
 
