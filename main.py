@@ -63,7 +63,7 @@ def tela_login(menu_principal, menu_membro, menu_gestor):
     print(mensagem)
     if sucesso:
         sleep(0.5)
-        print(f"Bem vindo! Tipo de conta: {usuario['tipo']}")
+        print(f"Bem vindo, {usuario['nome']}! Tipo de conta: {usuario['tipo']}")
         if usuario['tipo'] == "membro":
             menu_membro(usuario)
         else:
@@ -94,7 +94,8 @@ def buscar_organizacao_por_palavra_chave():
             print(f" - {organizacao['nome']}")
     else:
         print("Organização não encontrada.")
-
+    sleep(0.5)
+    input("\nPressione Enter para voltar ao menu...")
 
 def tela_minhas_organizacoes(usuario):
     sleep(0.5)
@@ -153,6 +154,19 @@ def tela_minhas_organizacoes(usuario):
     input("\nPressione Enter para voltar ao menu...")
     sleep(0.5)
 
+def entrar_organizacao(organizacao):
+    gestor = usuario_controller.buscar_por_id(organizacao['gestor_id'])
+    nome_gestor = gestor['nome']
+    if not gestor:
+        nome_gestor = "Gestor não encontrado"
+    else:
+        nome_gestor = gestor['nome']
+    sleep(0.5)
+    print(f"\n\n\033[44m ----- {organizacao['nome']} ----- \033[0m")
+    print(f"Gestor: {nome_gestor}")
+    print("Atividades ainda vão ser adicionadas...")
+    return
+
 def tela_organizacoes():
     print("\n\n\033[44m ----- ORGANIZAÇÕES ----- \033[0m")
     organizacoes = organizacoes_controller.listar_organizacoes()
@@ -163,9 +177,20 @@ def tela_organizacoes():
     
     for i, organizacao in enumerate(organizacoes, start=1):
         print(f"{i}- {organizacao['nome']}")
-    buscar = input("\nDeseja buscar uma organização? (s/n): ")
-    if buscar.lower() == "s":
-        buscar_organizacao_por_palavra_chave()
+    entrar = input("\nDeseja visualizar alguma organização? (s/n): ")
+    if entrar.lower() == "s":
+        sleep(0.5)
+        org_numero = input("Digite o número da organização que deseja visualizar: ")
+        if not org_numero.isdigit():
+            print("\nDigite apenas o número.\n")
+            return
+        org_numero = int(org_numero) - 1
+        if 0 <= org_numero < len(organizacoes):
+            entrar_organizacao(organizacoes[org_numero])
+        else:
+            print("Organização inválida.")
+    else:
+        return
 
     input("\nPressione Enter para voltar ao menu...")
     sleep(0.5)
@@ -235,9 +260,10 @@ def menu_membro(usuario):
     while True:
         print("\n\n\033[44m ===== MENU MEMBRO ===== \033[0m")
         print("1 - Ver organizações")
-        print("2 - Minha conta")
-        print("3 - Excluir conta")
-        print("4 - Sair")
+        print("2 - Buscar organização por nome")
+        print("3 - Minha conta")
+        print("4 - Excluir conta")
+        print("5 - Sair")
         opcao = input("Escolha uma opção: ")
 
         if opcao == "1":
@@ -246,14 +272,19 @@ def menu_membro(usuario):
 
         elif opcao == "2":
             sleep(0.5)
-            usuario =minha_conta(usuario)
+            buscar_organizacao_por_palavra_chave()
 
         elif opcao == "3":
             sleep(0.5)
-            if excluir_conta(usuario):
-                break
+            usuario = minha_conta(usuario)  
 
         elif opcao == "4":
+            sleep(0.5)
+            if excluir_conta(usuario):
+                break
+            sleep(0.5)
+
+        elif opcao == "5":
             print("Saindo...")
             sleep(0.5)
             break
@@ -266,10 +297,11 @@ def menu_gestor(usuario):
     while True:
         print("\n\n\033[44m ===== MENU GESTOR ===== \033[0m")
         print("1 - Ver organizações")
-        print("2 - Minhas organizações")
-        print("3 - Minha conta")
-        print("4 - Excluir conta")
-        print("5 - Sair")
+        print("2 - Buscar organização por nome")
+        print("3 - Minhas organizações")
+        print("4 - Minha conta")
+        print("5 - Excluir conta")
+        print("6 - Sair")
         opcao = input("Escolha uma opção: ")
 
         if opcao == "1":
@@ -279,21 +311,22 @@ def menu_gestor(usuario):
 
         elif opcao == "2":
             sleep(0.5)
-            tela_minhas_organizacoes(usuario)
-            sleep(0.5)
+            buscar_organizacao_por_palavra_chave()
 
         elif opcao == "3":
             sleep(0.5)
-            usuario = minha_conta(usuario)
-            sleep(0.5)
+            tela_minhas_organizacoes(usuario)
 
         elif opcao == "4":
             sleep(0.5)
-            if excluir_conta(usuario):
-                break
-            sleep(0.5)
+            usuario = minha_conta(usuario)
 
         elif opcao == "5":
+            sleep(0.5)
+            if excluir_conta(usuario):
+                break
+
+        elif opcao == "6":
             print("Saindo...")
             sleep(0.5)
             break
