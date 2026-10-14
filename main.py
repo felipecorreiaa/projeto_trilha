@@ -16,18 +16,31 @@ def tela_cadastro():
         sleep(0.5)
         return
     email = input("Email: ")
+    if email == "0":
+        print("Voltando ao menu...")
+        sleep(0.5)
+        return
     senha = input("Senha: ")
+    if senha == "0":
+        print("Voltando ao menu...")
+        sleep(0.5)
+        return
 
     while True:
         tipo_opcao = input("Tipo (1 - Membro, 2 - Gestor): ")
-        if tipo_opcao in ("1", "2"):
+        if tipo_opcao in ("1", "2", "0"):
             break
         sleep(0.5)
-        print("Opção inválida. Tente novamente.")
+        print("Opção inválida. Tente novamente.\n")
+        sleep(0.5)
     if tipo_opcao == "1":
         tipo = "membro"
-    else:
+    elif tipo_opcao == "2":
         tipo = "gestor"
+    else:
+        print("Voltando ao menu...")
+        sleep(0.5)
+        return
 
     sucesso, mensagem = usuario_controller.cadastrar(nome, email, senha, tipo)
     print(mensagem)
@@ -41,6 +54,10 @@ def tela_login(menu_principal, menu_membro, menu_gestor):
         sleep(0.5)
         return
     senha = input("Senha: ")
+    if senha == "0":
+        print("Voltando ao menu...")
+        sleep(0.5)
+        return
 
     sucesso, mensagem, usuario = usuario_controller.login(email, senha)
     print(mensagem)
@@ -53,6 +70,7 @@ def tela_login(menu_principal, menu_membro, menu_gestor):
             menu_gestor(usuario)
 
 def tela_cadastro_organizacao(usuario):
+    sleep(0.5)
     print("\n\n\033[44m ----- CADASTRO DE ORGANIZAÇÃO ----- \033[0m")
     print("Digite 0 para voltar ao menu")
     nome = input("Nome da organização: ")
@@ -65,6 +83,7 @@ def tela_cadastro_organizacao(usuario):
     print(mensagem)
 
 def buscar_organizacao_por_palavra_chave():
+    sleep(0.5)
     print("\n\n\033[44m ----- BUSCA POR NOME ----- \033[0m")
     palavra_chave = input("Digite o nome da organização: ")
     organizacoes = organizacoes_controller.buscar_por_palavra_chave(palavra_chave)
@@ -78,6 +97,7 @@ def buscar_organizacao_por_palavra_chave():
 
 
 def tela_minhas_organizacoes(usuario):
+    sleep(0.5)
     print("\n\n\033[44m ----- MINHAS ORGANIZAÇÕES ----- \033[0m")
     organizacoes = organizacoes_controller.listar_organizacoes_por_gestor(usuario['id'])
 
@@ -175,7 +195,7 @@ def minha_conta(usuario):
 
 def excluir_conta(usuario):
     while True:
-        excluir = input("Deseja excluir a conta? (s/n): ")
+        excluir = input("\nDeseja excluir a conta mesmo? (s/n): ")
         if excluir.lower() == "s":
             sucesso, mensagem = usuario_controller.excluir_conta(usuario['id'])
             print(mensagem)
@@ -184,6 +204,7 @@ def excluir_conta(usuario):
             return False
         else:
             print("Opção inválida. Tente novamente.")
+            sleep(0.5)
 
 def menu_principal():
     while True:

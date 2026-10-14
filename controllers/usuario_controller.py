@@ -6,13 +6,13 @@ class UsuarioController:
 
     def cadastrar(self, nome, email, senha, tipo):
         if '@' not in email or '.' not in email:
-            return False, 'Email inválido.'
+            return False, 'Email inválido. Tente novamente.'
         if len(senha) < 6:
-            return False, "A senha precisa ter pelo menos 6 caracteres."
+            return False, "A senha precisa ter pelo menos 6 caracteres. Tente novamente."
         if any(c.isupper() for c in senha) == False:
-            return False, "A senha precisa ter pelo menos uma letra maiúscula."
+            return False, "A senha precisa ter pelo menos uma letra maiúscula. Tente novamente."
         if self.repository.buscar_por_email(email):
-            return False, "Email já cadastrado."
+            return False, "Email já cadastrado. Tente usar outro."
         if not nome.strip() or not email.strip() or not senha.strip() or not tipo.strip():
             return False, "Preencha todos os campos."
 
