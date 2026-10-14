@@ -39,6 +39,4 @@ def criar_tabelas():
     conn.commit()
     conn.close()
 
-if __name__ == "__main__":
-    criar_tabelas()
 
