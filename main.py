@@ -96,7 +96,11 @@ def tela_minhas_organizacoes(usuario):
     editar = input("\nDeseja editar o nome da organização? (s/n): ")
     if editar.lower() == "s":
         sleep(0.5)
-        org_numero = int(input("Digite o número da organização que deseja editar: ")) - 1
+        org_numero = input("Digite o número da organização que deseja editar: ")
+        if not org_numero.isdigit():
+            print("Digite apenas o número.")
+            return
+        org_numero = int(org_numero) - 1
         if 0 <= org_numero < len(organizacoes):
             sleep(0.5)
             novo_nome = input("Digite o novo nome da organização: ")
@@ -115,7 +119,11 @@ def tela_minhas_organizacoes(usuario):
             sleep(0.5)
             excluir = input("Deseja excluir alguma organização? (s/n): ")
             if excluir.lower() == "s":
-                org_numero = int(input("Digite o número da organização que deseja excluir: ")) - 1
+                org_numero = input("Digite o número da organização que deseja excluir: ")
+                if not org_numero.isdigit():
+                    print("Digite apenas o número.")
+                    return
+                org_numero = int(org_numero) - 1
                 if 0 <= org_numero < len(organizacoes):
                     sucesso, mensagem = organizacoes_controller.excluir(organizacoes[org_numero]['id'])
                     print(mensagem)
@@ -174,7 +182,7 @@ def excluir_conta(usuario):
             print(mensagem)
             break
         elif excluir.lower() == "n":
-            return
+            return False
         else:
             print("Opção inválida. Tente novamente.")
 
@@ -226,8 +234,8 @@ def menu_membro(usuario):
 
         elif opcao == "4":
             sleep(0.5)
-            excluir_conta(usuario)
-            break
+            if excluir_conta(usuario):
+                break
 
         elif opcao == "5":
             print("Saindo...")
@@ -271,9 +279,9 @@ def menu_gestor(usuario):
 
         elif opcao == "5":
             sleep(0.5)
-            excluir_conta(usuario)
+            if excluir_conta(usuario):
+                break
             sleep(0.5)
-            break
 
         elif opcao == "6":
             print("Saindo...")
