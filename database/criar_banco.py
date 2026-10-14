@@ -26,19 +26,17 @@ def criar_tabelas():
     ''')
 
 #criar tabela de atividades
-    cursor.execute('''
-    CREATE TABLE IF NOT EXISTS atividades(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        organizacao_id INTEGER NOT NULL REFERENCES organizacoes(id),
-        dia TEXT NOT NULL,
-        horario TEXT NOT NULL,
-        descricao TEXT NOT NULL,
-        link_inscricao TEXT)
-    ''')
+    # cursor.execute('''
+    # CREATE TABLE IF NOT EXISTS atividades(
+    #     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    #     organizacao_id INTEGER NOT NULL REFERENCES organizacoes(id),
+    #     dia TEXT NOT NULL,
+    #     horario TEXT NOT NULL,
+    #     descricao TEXT NOT NULL,
+    #     link_inscricao TEXT)
+    # ''')
 
     conn.commit()
     conn.close()
 
-if __name__ == "__main__":
-    criar_tabelas()
 
