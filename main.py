@@ -117,7 +117,7 @@ def tela_minhas_organizacoes(usuario):
         sleep(0.5)
         org_numero = input("Digite o número da organização que deseja editar: ")
         if not org_numero.isdigit():
-            print("Digite apenas o número.")
+            print("\nDigite apenas o número.\n")
             return
         org_numero = int(org_numero) - 1
         if 0 <= org_numero < len(organizacoes):
@@ -140,7 +140,7 @@ def tela_minhas_organizacoes(usuario):
             if excluir.lower() == "s":
                 org_numero = input("Digite o número da organização que deseja excluir: ")
                 if not org_numero.isdigit():
-                    print("Digite apenas o número.")
+                    print("\nDigite apenas o número.\n")
                     return
                 org_numero = int(org_numero) - 1
                 if 0 <= org_numero < len(organizacoes):
@@ -150,7 +150,7 @@ def tela_minhas_organizacoes(usuario):
                     print("Organização inválida.")
             return
 
-    input("Pressione Enter para voltar ao menu...")
+    input("\nPressione Enter para voltar ao menu...")
     sleep(0.5)
 
 def tela_organizacoes():
@@ -167,7 +167,7 @@ def tela_organizacoes():
     if buscar.lower() == "s":
         buscar_organizacao_por_palavra_chave()
 
-    input("Pressione Enter para voltar ao menu...")
+    input("\nPressione Enter para voltar ao menu...")
     sleep(0.5)
 
 def minha_conta(usuario):
@@ -192,6 +192,7 @@ def minha_conta(usuario):
             return usuario
         else:
             print("Opção inválida. Tente novamente.")
+            sleep(0.5)
 
 def excluir_conta(usuario):
     while True:
