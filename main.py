@@ -83,7 +83,6 @@ def tela_cadastro_organizacao(usuario):
     print(mensagem)
 
 def buscar_organizacao_por_palavra_chave():
-    sleep(0.5)
     print("\n\n\033[44m ----- BUSCA POR NOME ----- \033[0m")
     palavra_chave = input("Digite o nome da organização: ")
     organizacoes = organizacoes_controller.buscar_por_palavra_chave(palavra_chave)
