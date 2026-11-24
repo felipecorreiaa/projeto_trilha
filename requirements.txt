@@ -1,2 +1,2 @@
 # sem dependências externas por enquanto
-# no futuro: customtkinter e bcrypt
+# no futuro: customtkinter
