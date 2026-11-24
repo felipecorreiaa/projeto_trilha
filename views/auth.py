@@ -1,4 +1,5 @@
 from time import sleep
+from utils.senha import input_senha
 from controllers.usuario_controller import UsuarioController
 
 usuario_controller = UsuarioController()
@@ -17,7 +18,7 @@ def tela_cadastro():
         print("Voltando ao menu...")
         sleep(0.5)
         return
-    senha = input("Senha: ")
+    senha = input_senha("Senha: ")
     if senha == "0":
         print("Voltando ao menu...")
         sleep(0.5)
@@ -50,7 +51,7 @@ def tela_login(menu_principal, menu_membro, menu_gestor):
         print("Voltando ao menu...")
         sleep(0.5)
         return
-    senha = input("Senha: ")
+    senha = input_senha("Senha: ")
     if senha == "0":
         print("Voltando ao menu...")
         sleep(0.5)

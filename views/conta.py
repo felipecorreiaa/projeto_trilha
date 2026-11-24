@@ -1,4 +1,5 @@
 from time import sleep
+from utils.senha import input_senha
 from controllers.usuario_controller import UsuarioController
 
 usuario_controller = UsuarioController()
@@ -16,7 +17,7 @@ def minha_conta(usuario):
         if alterar.lower() == "s":
             novo_nome = input("Digite o novo nome: ")
             novo_email = input("Digite o novo email: ")
-            nova_senha = input("Digite a nova senha: ")
+            nova_senha = input_senha("Digite a nova senha: ")
             sucesso, mensagem = usuario_controller.editar_usuario(usuario['id'], novo_nome, novo_email, nova_senha)
             print(mensagem)
             if sucesso:
