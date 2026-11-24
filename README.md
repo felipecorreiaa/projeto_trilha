@@ -28,8 +28,6 @@ Gestores e membros de organizações estudantis em ambiente universitário.
 
 Python
 
-CustomTkinter
-
 SQLite
 
 ## 🚀 Como executar
