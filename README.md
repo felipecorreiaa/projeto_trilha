@@ -1,4 +1,4 @@
-## 🧭 Trilha
+# 🧭 Trilha
 
 Trilha é um sistema desktop de gestão de organizações estudantis (como ligas acadêmicas, diretórios acadêmicos, atléticas e grupos de estudos), desenvolvido como projeto interdisciplinar do 1º período do curso de Sistemas de Informação da Universidade Federal Rural de Pernambuco (UFRPE).
 
