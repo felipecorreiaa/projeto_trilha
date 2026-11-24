@@ -57,11 +57,11 @@ python main.py
 
 | Funcionalidade | Descrição |
 |---|---|
-| RF006 - Cadastro de Atividade | O gestor adiciona uma atividade à agenda da organização (nome, dia, horário, descrição e link de inscrição opcional), exibida para todos os usuários. Valida campos em branco, dia, horário e se o usuário é o gestor da organização. |
-| RF007 - Leitura e Edição de Atividade | Qualquer usuário vê as atividades da organização, ordenadas por data e horário. O gestor edita uma atividade, mantendo os valores atuais dos campos deixados em branco. |
-| RF008 - Exclusão de Atividade | O gestor exclui uma atividade (e as inscrições ligadas a ela) após confirmar a exclusão. |
-| RF009 - Inscrição na Atividade | O usuário se inscreve em uma atividade da organização ou cancela a inscrição. Não permite inscrição em atividade que já aconteceu nem inscrição duplicada. |
-| RF010 - Controle de Presença | O gestor escolhe uma atividade, vê os inscritos e marca ou desmarca a presença de cada um. |
+| Cadastro de Atividade | O gestor adiciona uma atividade à agenda da organização (nome, dia, horário, descrição e link de inscrição opcional), exibida para todos os usuários. Valida campos em branco, dia, horário e se o usuário é o gestor da organização. |
+| Leitura e Edição de Atividade | Qualquer usuário vê as atividades da organização, ordenadas por data e horário. O gestor edita uma atividade, mantendo os valores atuais dos campos deixados em branco. |
+| Exclusão de Atividade | O gestor exclui uma atividade (e as inscrições ligadas a ela) após confirmar a exclusão. |
+| Inscrição na Atividade | O usuário se inscreve em uma atividade da organização ou cancela a inscrição. Não permite inscrição em atividade que já aconteceu nem inscrição duplicada. |
+| Controle de Presença | O gestor escolhe uma atividade, vê os inscritos e marca ou desmarca a presença de cada um. |
 
 ## 🎓 Projeto acadêmico
 
