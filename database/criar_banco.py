@@ -13,8 +13,7 @@ def criar_tabelas():
         nome TEXT NOT NULL,
         email TEXT NOT NULL,
         senha TEXT NOT NULL,
-        tipo TEXT NOT NULL CHECK(tipo IN ('membro', 'gestor')),
-        confirmado INTEGER DEFAULT 0) 
+        tipo TEXT NOT NULL CHECK(tipo IN ('membro', 'gestor')))
     ''')
 
 #criar tabela orgs
@@ -26,15 +25,25 @@ def criar_tabelas():
     ''')
 
 #criar tabela de atividades
-    # cursor.execute('''
-    # CREATE TABLE IF NOT EXISTS atividades(
-    #     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    #     organizacao_id INTEGER NOT NULL REFERENCES organizacoes(id),
-    #     dia TEXT NOT NULL,
-    #     horario TEXT NOT NULL,
-    #     descricao TEXT NOT NULL,
-    #     link_inscricao TEXT)
-    # ''')
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS atividades(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        organizacao_id INTEGER NOT NULL REFERENCES organizacoes(id),
+        nome TEXT NOT NULL,
+        dia TEXT NOT NULL,
+        horario TEXT NOT NULL,
+        descricao TEXT NOT NULL,
+        link_inscricao TEXT)
+    ''')
+
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS inscricoes(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        atividade_id INTEGER NOT NULL REFERENCES atividades(id),
+        usuario_id INTEGER NOT NULL REFERENCES usuarios(id),
+        presente INTEGER DEFAULT 0,
+        UNIQUE(atividade_id, usuario_id))
+    ''')
 
     conn.commit()
     conn.close()

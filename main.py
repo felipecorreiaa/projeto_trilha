@@ -51,7 +51,7 @@ def menu_membro(usuario):
 
         if opcao == "1":
             sleep(0.5)
-            tela_organizacoes()
+            tela_organizacoes(usuario)
 
         elif opcao == "2":
             sleep(0.5)
@@ -89,7 +89,7 @@ def menu_gestor(usuario):
 
         if opcao == "1":
             sleep(0.5)
-            tela_organizacoes()
+            tela_organizacoes(usuario)
             sleep(0.5)
 
         elif opcao == "2":
