@@ -117,6 +117,56 @@ def tela_excluir_atividade(atividades, usuario):
     else:
         print("Atividade não foi excluída.")
 
+def tela_controle_presenca(atividades, usuario):
+    atividade = escolher_atividade(atividades, "controlar a presença")
+    if not atividade:
+        return
+
+    while True:
+        sucesso, mensagem, inscritos = inscricao_controller.listar_inscritos(
+            atividade['id'], usuario['id']
+        )
+        if not sucesso:
+            print(mensagem)
+            return
+
+        print(f"\n\n\033[44m ----- PRESENÇA: {atividade['nome']} ----- \033[0m")
+        if not inscritos:
+            print("Nenhum inscrito nessa atividade.")
+            sleep(0.5)
+            input("\nPressione Enter para voltar...")
+            sleep(0.5)
+
+        for i, inscrito in enumerate(inscritos, start=1):
+            if inscrito['presente']:
+                marca = "x"
+            else:
+                marca = " "
+            print(f"{i} - [{marca}] {inscrito['nome']}")
+
+        numero = input("\nDigite o número do inscrito para marcar/desmarcar (0 para voltar): ")
+        sleep(0.5)
+        if numero == "0":
+            return
+        if not numero.isdigit():
+            print("Digite apenas número.")
+            continue
+        numero = int(numero) - 1
+        if numero < 0 or numero >= len(inscritos):
+            print("Inscrito inválido")
+            continue
+
+        inscrito = inscritos[numero]
+        if inscrito['presente']:
+            novo_valor = False
+        else:
+            novo_valor = True
+        sucesso, mensagem = inscricao_controller.marcar_presenca(
+            atividade['id'], inscrito['usuario_id'], usuario['id'], novo_valor
+        )
+        print(mensagem)
+        sleep(0.5)
+
 def buscar_organizacao_por_palavra_chave():
     print("\n\n\033[44m ----- BUSCA POR NOME ----- \033[0m")
     palavra_chave = input("Digite o nome da organização: ")
@@ -206,7 +256,7 @@ def entrar_organizacao(organizacao, usuario):
         mostrar_atividades(atividades)
 
         if dono:
-            print("\n[1] - Adicionar atividade\n[2] - Editar atividade\n[3] - Excluir atividade\n[4] - Voltar")
+            print("\n[1] - Adicionar atividade\n[2] - Editar atividade\n[3] - Excluir atividade\n[4] - Controle de presença\n[5] - Voltar")
         else:
             print("\n[1] - Inscrever-se\n[2] - Cancelar inscrição\n[3] - Voltar")
         opcao = input("Escolha uma opção: ")
@@ -217,6 +267,8 @@ def entrar_organizacao(organizacao, usuario):
             tela_editar_atividade(atividades, usuario)
         elif dono and opcao == "3":
             tela_excluir_atividade(atividades, usuario)
+        elif dono and opcao == "4":
+            tela_controle_presenca(atividades, usuario)
         elif not dono and opcao == "1":
             atividade = escolher_atividade(atividades, "se inscrever")
             if atividade:
@@ -225,7 +277,7 @@ def entrar_organizacao(organizacao, usuario):
             atividade = escolher_atividade(atividades, "cancelar")
             if atividade:
                 print(inscricao_controller.cancelar(atividade['id'], usuario['id'])[1])
-        elif dono and opcao == "4" or not dono and opcao == "3":
+        elif dono and opcao == "5" or not dono and opcao == "3":
             return
         else:
             print("Opção inválida. Tente novamente\n")

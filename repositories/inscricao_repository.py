@@ -42,3 +42,26 @@ class InscricaoRepository:
         )
         conn.commit()
         conn.close()
+
+    def listar_por_atividade(self, atividade_id):
+        conn = sqlite3.connect('database/trilha.db')
+        conn.row_factory = sqlite3.Row
+        inscritos = conn.execute(
+            '''SELECT u.id AS usuario_id, u.nome, i.presente
+            FROM inscricoes i
+            JOIN usuarios u ON u.id = i.usuario_id
+            Where i.atividade_id = ?
+            ORDER BY u.nome''',
+            (atividade_id,)
+        ).fetchall()
+        conn.close()
+        return inscritos
+
+    def atualizar_presenca(self, atividade_id, usuario_id, presente):
+        conn = sqlite3.connect('database/trilha.db')
+        conn.execute(
+            'UPDATE inscricoes SET presente = ? WHERE atividade_id = ? AND usuario_id = ?',
+            (presente, atividade_id, usuario_id)
+        )
+        conn.commit()
+        conn.close()

@@ -1,6 +1,7 @@
 from repositories.inscricao_repository import InscricaoRepository
 from repositories.atividade_repository import AtividadeRepository
 from repositories.usuario_repository import UsuarioRepository
+from repositories.organizacoes_repository import OrganizacoesRepository
 from datetime import datetime
 
 
@@ -9,6 +10,7 @@ class InscricaoController:
         self.repository = InscricaoRepository()
         self.atividades_repository = AtividadeRepository()
         self.usuario_repository = UsuarioRepository()
+        self.organizacoes_repository = OrganizacoesRepository()
 
     def inscrever(self, atividade_id, usuario_id):
         if not self.usuario_repository.buscar_por_id(usuario_id):
@@ -32,3 +34,24 @@ class InscricaoController:
 
     def listar_por_usuario(self, usuario_id):
         return self.repository.listar_por_usuario(usuario_id)
+
+    def listar_inscritos(self, atividade_id, gestor_id):
+        atividade = self.atividades_repository.buscar_por_id(atividade_id)
+        if not atividade:
+            return False, "Atividade não encontrada.", []
+        organizacao = self.organizacoes_repository.buscar_por_id(atividade['organizacao_id'])
+        if not organizacao or organizacao['gestor_id'] != gestor_id:
+            return False, "Você não pode ver os inscritos dessa atividade.", []
+        return True, "", self.repository.listar_por_atividade(atividade_id)
+
+    def marcar_presenca(self, atividade_id, usuario_id, gestor_id, presente):
+        atividade = self.atividades_repository.buscar_por_id(atividade_id)
+        if not atividade:
+            return False, "Atividade não encontrada."
+        organizacao = self.organizacoes_repository.buscar_por_id(atividade['organizacao_id'])
+        if not organizacao or organizacao['gestor_id'] != gestor_id:
+            return False, "Você não pode alterar a presença nessa atividade."
+        if not self.repository.buscar(atividade_id, usuario_id):
+            return False, "Esse usuário não está inscrito na atividade."
+        self.repository.atualizar_presenca(atividade_id, usuario_id, 1 if presente else 0)
+        return True, "Presença atualizada."
