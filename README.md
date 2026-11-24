@@ -65,4 +65,4 @@ python main.py
 
 ## 🎓 Projeto acadêmico
 
-Projeto em desenvolvimento durante o 1º período do curso de Sistemas de Informação da Universidade Federal Rural de Pernambuco (UFRPE) pelo estudante Felipe Correia.
+Projeto em desenvolvimento durante o 1º período do curso de Sistemas de Informação da Universidade Federal Rural de Pernambuco (UFRPE) pelo estudante Felipe Albuquerque Correia.
