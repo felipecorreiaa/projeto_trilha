@@ -33,8 +33,8 @@ class AtividadeRepository:
     def atualizar(self, atividade_id, nome, dia, horario, descricao, link_inscricao):
         conn = sqlite3.connect('database/trilha.db')
         conn.execute(
-            'UPDATE atividades SET nome = ?, dia = ?, horario = ?, descricao = ?, link_inscricao = ?'
-            'WHERE id = ?'
+            'UPDATE atividades SET nome = ?, dia = ?, horario = ?, descricao = ?, link_inscricao = ? '
+            'WHERE id = ?',
             (nome, dia, horario, descricao, link_inscricao, atividade_id)
         )
         conn.commit()
