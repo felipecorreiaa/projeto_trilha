@@ -14,7 +14,6 @@ usuario_controller = UsuarioController()
 organizacoes_controller = OrganizacoesController()
 
 
-
 def menu_principal():
     while True:
         print("\n\n\033[46m ===== TRILHA ===== \033[0m")

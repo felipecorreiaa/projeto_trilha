@@ -36,6 +36,7 @@ def criar_tabelas():
         link_inscricao TEXT)
     ''')
 
+#criar tabela de inscrições
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS inscricoes(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
