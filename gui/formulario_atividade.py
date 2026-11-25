@@ -18,7 +18,6 @@ class FormularioAtividade(ctk.CTkToplevel):
         self.entry_descricao = self.criar_campo("Descrição", valores.get("descricao", ""))
         self.entry_link = self.criar_campo("Link de inscrição (opcional)", valores.get("link", ""))
 
-        # Enter pula para o próximo campo; no último, salva
         campos = [self.entry_nome, self.entry_dia, self.entry_horario,
                   self.entry_descricao, self.entry_link]
         for atual, proximo in zip(campos, campos[1:]):
