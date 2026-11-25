@@ -35,14 +35,14 @@ SQLite
 ## 🚀 Como executar
 
 Clone o repositório:  
-git clone https://github.com/felipecorreiaa/projeto_trilha.git  
-cd projeto_trilha
+git clone https://github.com/felipecorreiaa/trilha.git  
+cd trilha
 
 Instale as dependências:  
 pip install -r requirements.txt
 
 Execute o sistema:  
-python main.py
+python main_gui.py
 
 ## 🚀 Release 1.0
 |Funcionalidade	| Descrição |
