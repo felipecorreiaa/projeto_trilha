@@ -1,2 +1,1 @@
-# sem dependências externas por enquanto
-# no futuro: customtkinter
+customtkinter==6.0.0
