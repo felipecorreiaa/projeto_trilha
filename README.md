@@ -40,6 +40,7 @@ SQLite
 ## 🧩 Organização dos módulos
 
 O projeto segue uma divisão em camadas. Cada módulo tem uma responsabilidade:
+
 Tela -> Controller -> Repository -> Banco SQLite
 
 ## 🚀 Como executar
