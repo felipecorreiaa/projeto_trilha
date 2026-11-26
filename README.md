@@ -24,6 +24,11 @@ Gestores e membros de organizações estudantis em ambiente universitário.
 
 👤 Minha conta: alteração dos dados e exclusão da conta
 
+
+## 💡 Funcionalidades de inovação
+
+Em vez de o gestor conferir planilhas de presença, o Trilha liga as etapas em um fluxo único: o membro se inscreve na atividade e o gestor registra a presença em atividades.
+
 ## 🛠️ Tecnologias
 
 Python
@@ -31,6 +36,11 @@ Python
 CustomTkinter
 
 SQLite
+
+## 🧩 Organização dos módulos
+
+O projeto segue uma divisão em camadas. Cada módulo tem uma responsabilidade:
+Tela -> Controller -> Repository -> Banco SQLite
 
 ## 🚀 Como executar
 
@@ -62,6 +72,15 @@ python main_gui.py
 | Exclusão de Atividade | O gestor exclui uma atividade (e as inscrições ligadas a ela) após confirmar a exclusão. |
 | Inscrição na Atividade | O usuário se inscreve em uma atividade da organização ou cancela a inscrição. Não permite inscrição em atividade que já aconteceu nem inscrição duplicada. |
 | Controle de Presença | O gestor escolhe uma atividade, vê os inscritos e marca ou desmarca a presença de cada um. |
+
+## Possibilidade de Futuras Funcionalidades
+
+📄 Emissão de certifica em PDF ao atingir um critério mínimo de presença
+
+📁 Repositório de arquivos da organização (upload e download)
+
+📢 Mural de Avisos
+
 
 ## 🎓 Projeto acadêmico
 
